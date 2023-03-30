@@ -1,0 +1,4 @@
+[hosts]
+%{ for ip in instance_ips ~}
+ansible_host=${ip} ansible_user=root ansible_python_interpreter=python
+%{ endfor ~}
