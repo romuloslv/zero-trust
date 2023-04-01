@@ -1,10 +1,19 @@
 terraform {
   required_version = ">= 1.0.0"
-  backend "local" { path = "sysout/state/terraform.tfstate" }
+  backend "s3" {
+    bucket                      = "zero-trust"
+    key                         = "tf/terraform.tfstate"
+    region                      = "sa-saopaulo-1"
+    endpoint                    = "https://gr571iukts9i.compat.objectstorage.sa-saopaulo-1.oraclecloud.com"
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_metadata_api_check     = true
+    force_path_style            = true
+  }
   required_providers {
     oci = {
       source  = "oracle/oci"
-      version = "4.113.0"
+      version = "4.114.0"
     }
     tls = {
       source  = "hashicorp/tls"
