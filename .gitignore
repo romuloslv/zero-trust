@@ -1,0 +1,10 @@
+*.pem
+*.log
+*.tfplan
+*.tfstate*
+.terraform/
+*.auto.tfvars
+*.tfvars.json
+*.tfstate.backup
+**/.terraform/*
+*.override.tfvars

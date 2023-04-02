@@ -1,18 +1,38 @@
 # zero-trust
 Manage secrets and ssh logins using: vault, consul, terraform and ansible
 
-## architecture
+<br>
+
+## requirements
+In OCI console
+
+* Configure a new bucket
+
+In OCI console user config
+
+* Configure API Keys
+* Configure Customer Secret Keys  
+
+In your local environment config
+
+* Configure ~/.oci/config  
+* Configure env var AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY  
+* Replace the terraform files that contain "changeme" with your information
+
+<br>
+
+### architecture
 https://developer.hashicorp.com/vault/tutorials/day-one-consul/reference-architecture
 
-## consul implantation
+### consul implantation
 https://developer.hashicorp.com/vault/tutorials/day-one-consul/ha-with-consul
 
-## raft implantation
+### raft implantation
 https://developer.hashicorp.com/vault/docs/configuration/storage/raft
 
-## authentication
+### authentication
 https://developer.hashicorp.com/vault/docs/auth/oci
 
-## ssh
+### ssh
 https://developer.hashicorp.com/vault/docs/secrets/ssh/one-time-ssh-passwords
 https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates

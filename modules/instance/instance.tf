@@ -15,22 +15,21 @@ locals {
   ])
 }
 
-resource "oci_core_instance" "instances" {
+resource "oci_core_instance" "instance" {
   for_each             = { for server in local.instances : server.display_name => server }
   display_name         = each.value.display_name
   availability_domain  = data.oci_identity_availability_domain.ad.name
   fault_domain         = data.oci_identity_fault_domains.fd.fault_domains[each.value.no_of_instances].name
   compartment_id       = var.compartment_ocid
   shape                = each.value.shape_name
-  state                = var.instance_state
   preserve_boot_volume = false
 
   create_vnic_details {
     assign_private_dns_record = true
     assign_public_ip          = true
-    subnet_id                 = var.subnet_ocid
+    subnet_id                 = oci_core_subnet.pub_subnet.id
     hostname_label            = each.value.display_name
-    private_ip                = cidrhost(var.subnet_cidr_block, index(local.instances, each.value) + 10)
+    private_ip                = cidrhost("10.0.0.0/24", index(local.instances, each.value) + 10)
     nsg_ids                   = [oci_core_network_security_group.nsg.id]
   }
   source_details {

@@ -1,3 +1,4 @@
+compartment_ocid = "changeme"
 configuration = [
   {
     "application_name" : "consul",
@@ -27,13 +28,3 @@ configuration = [
     "os_system" : "Linux"
   }
 ]
-
-compartment_ocid = ""
-tenancy_ocid     = ""
-subnet_ocid      = ""
-fingerprint      = ""
-user_ocid        = ""
-vnc_ocid         = ""
-ssh_private_key  = ""
-region           = ""
-instance_state   = ""
