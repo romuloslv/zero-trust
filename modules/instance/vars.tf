@@ -1,2 +1,4 @@
-variable "compartment_ocid" {}
 variable "configuration" {}
+variable "tenancy" {
+  default = "changeme"
+}

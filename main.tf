@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 1.0.0"
   backend "s3" {
     bucket                      = "changeme"
-    key                         = "changeme"
+    key                         = "changeme/terraform.tfstate"
     region                      = "changeme"
     shared_credentials_file     = "./modules/templates/credentials"
     endpoint                    = "https://changeme.compat.objectstorage.changeme.oraclecloud.com"
@@ -28,9 +28,8 @@ terraform {
 }
 
 module "instance" {
-  source           = "./modules/instance"
-  compartment_ocid = var.compartment_ocid
-  configuration    = var.configuration
+  source        = "./modules/instance"
+  configuration = var.configuration
 }
 
 provider "oci" {

@@ -1,13 +1,13 @@
 resource "oci_core_vcn" "vnc" {
 	cidr_block     = "10.0.0.0/16"
-	compartment_id = var.compartment_ocid
+	compartment_id = oci_identity_compartment.sandbox.id
 	display_name   = "vcn-home"
 	dns_label      = "vcnhome"
 }
 
 resource "oci_core_subnet" "pub_subnet" {
 	cidr_block     = "10.0.0.0/24"
-	compartment_id = var.compartment_ocid
+	compartment_id = oci_identity_compartment.sandbox.id
 	display_name   = "subnet-home"
 	dns_label      = "subnethome"
 	route_table_id = oci_core_vcn.vnc.default_route_table_id
@@ -15,7 +15,7 @@ resource "oci_core_subnet" "pub_subnet" {
 }
 
 resource "oci_core_internet_gateway" "ig" {
-	compartment_id = var.compartment_ocid
+	compartment_id = oci_identity_compartment.sandbox.id
 	display_name   = "Internet Gateway vcn-home"
 	vcn_id         = oci_core_vcn.vnc.id
 	enabled        = "true"
@@ -31,7 +31,7 @@ resource "oci_core_default_route_table" "generated_oci_core_default_route_table"
 }
 
 resource "oci_core_network_security_group" "nsg" {
-  compartment_id = var.compartment_ocid
+  compartment_id = oci_identity_compartment.sandbox.id
 	vcn_id         = oci_core_vcn.vnc.id
   display_name   = "cluster"
 }

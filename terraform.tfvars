@@ -1,4 +1,3 @@
-compartment_ocid = "changeme"
 configuration = [
   {
     "application_name" : "consul",

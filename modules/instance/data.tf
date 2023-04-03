@@ -1,5 +1,5 @@
 data "oci_core_images" "oracle_linux" {
-  compartment_id           = var.compartment_ocid
+  compartment_id           = oci_identity_compartment.sandbox.id
   operating_system         = "Oracle Linux"
   operating_system_version = "9"
   filter {
@@ -13,15 +13,15 @@ data "oci_core_images" "oracle_linux" {
 }
 
 data "oci_identity_availability_domain" "ad" {
-  compartment_id = var.compartment_ocid
+  compartment_id = oci_identity_compartment.sandbox.id
   ad_number      = 1
 }
 
 data "oci_identity_fault_domains" "fd" {
-  compartment_id      = var.compartment_ocid
+  compartment_id      = oci_identity_compartment.sandbox.id
   availability_domain = data.oci_identity_availability_domain.ad.name
 }
 
 data "oci_objectstorage_namespace" "ns" {
-  compartment_id = var.compartment_ocid
+  compartment_id = oci_identity_compartment.sandbox.id
 }

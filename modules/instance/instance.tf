@@ -20,7 +20,7 @@ resource "oci_core_instance" "instance" {
   display_name         = each.value.display_name
   availability_domain  = data.oci_identity_availability_domain.ad.name
   fault_domain         = data.oci_identity_fault_domains.fd.fault_domains[each.value.no_of_instances].name
-  compartment_id       = var.compartment_ocid
+  compartment_id       = oci_identity_compartment.sandbox.id
   shape                = each.value.shape_name
   preserve_boot_volume = false
 
