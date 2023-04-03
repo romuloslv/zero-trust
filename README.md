@@ -15,8 +15,8 @@ In OCI console user config
 
 In your local environment config
 
-* Configure ~/.oci/config  
-* Configure env var AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY  
+* Configure ~/.oci/config with API Keys  
+* Configure modules/templates/credentials with Customer Secret Keys    
 * Replace the terraform files that contain "changeme" with your information
 
 <br>

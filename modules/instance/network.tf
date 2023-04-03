@@ -1,17 +1,17 @@
 resource "oci_core_vcn" "vnc" {
-	cidr_block = "10.0.0.0/16"
+	cidr_block     = "10.0.0.0/16"
 	compartment_id = var.compartment_ocid
-	display_name = "vcn-home"
-	dns_label = "vcnhome"
+	display_name   = "vcn-home"
+	dns_label      = "vcnhome"
 }
 
 resource "oci_core_subnet" "pub_subnet" {
-	cidr_block      = "10.0.0.0/24"
-	compartment_id  = var.compartment_ocid
-	display_name    = "subnet-home"
-	dns_label       = "subnethome"
-	route_table_id  = oci_core_vcn.vnc.default_route_table_id
-	vcn_id          = oci_core_vcn.vnc.id
+	cidr_block     = "10.0.0.0/24"
+	compartment_id = var.compartment_ocid
+	display_name   = "subnet-home"
+	dns_label      = "subnethome"
+	route_table_id = oci_core_vcn.vnc.default_route_table_id
+	vcn_id         = oci_core_vcn.vnc.id
 }
 
 resource "oci_core_internet_gateway" "ig" {
@@ -23,9 +23,9 @@ resource "oci_core_internet_gateway" "ig" {
 
 resource "oci_core_default_route_table" "generated_oci_core_default_route_table" {
 	route_rules {
-		destination              = "0.0.0.0/0"
-		destination_type         = "CIDR_BLOCK"
-		network_entity_id        = oci_core_internet_gateway.ig.id
+		destination       = "0.0.0.0/0"
+		destination_type  = "CIDR_BLOCK"
+		network_entity_id = oci_core_internet_gateway.ig.id
 	}
 	manage_default_resource_id = oci_core_vcn.vnc.default_route_table_id
 }

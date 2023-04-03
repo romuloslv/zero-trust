@@ -2,8 +2,9 @@ terraform {
   required_version = ">= 1.0.0"
   backend "s3" {
     bucket                      = "changeme"
-    key                         = "changeme/terraform.tfstate"
+    key                         = "changeme"
     region                      = "changeme"
+    shared_credentials_file     = "./modules/templates/credentials"
     endpoint                    = "https://changeme.compat.objectstorage.changeme.oraclecloud.com"
     skip_region_validation      = true
     skip_credentials_validation = true
